@@ -1,22 +1,17 @@
 {
-  "name": "browserify-istanbul",
-  "version": "2.0.0",
+  "name": "carpetify",
+  "version": "1.0.0",
   "description": "A browserify transform for the istanbul code coverage tool",
   "main": "index.js",
   "directories": {
     "test": "test"
   },
   "scripts": {
-    "lint": "eslint index.js test/*.js",
-    "test": "istanbul cover _mocha"
+    "test": "mocha"
   },
-  "pre-commit": [
-    "lint",
-    "test"
-  ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/devongovett/browserify-istanbul.git"
+    "url": "git://github.com/toddself/carpetify.git"
   },
   "keywords": [
     "browserify",
@@ -24,13 +19,22 @@
     "istanbul"
   ],
   "author": "Devon Govett <devongovett@gmail.com>",
+  "contributors": [
+    {
+      "name": "Todd Kennedy",
+      "email": "todd@selfassembled.org"
+    }
+  ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/devongovett/browserify-istanbul/issues"
+    "url": "https://github.com/toddself/carpetify/issues"
   },
-  "homepage": "https://github.com/devongovett/browserify-istanbul",
+  "homepage": "https://github.com/toddself/carpetify",
   "dependencies": {
+    "istanbul-lib-instrument": "^1.7.2",
     "minimatch": "^3.0.0",
+    "nyc": "^11.0.2",
+    "object-assign": "^4.1.1",
     "through": "^2.3.8"
   },
   "devDependencies": {
@@ -38,7 +42,6 @@
     "coveralls": "^2.11.8",
     "eslint": "^2.2.0",
     "eslint-plugin-mocha": "^2.0.0",
-    "istanbul": "^0.4.2",
     "mocha": "^2.4.5",
     "pre-commit": "^1.1.2"
   }

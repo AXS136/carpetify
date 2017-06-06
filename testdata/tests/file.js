@@ -1,3 +1,3 @@
-var fn = require('../src/file');
+var fn = require('../src/file')
 
-fn(10);
+fn(10)

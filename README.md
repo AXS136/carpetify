@@ -1,49 +1,32 @@
-# browserify-istanbul
+# carpetify
 
-A [browserify](http://github.com/substack/node-browserify) transform for the [istanbul](https://github.com/gotwarlost/istanbul) code coverage tool.
+A [browserify](http://github.com/substack/node-browserify) transform for the [istanbul](https://github.com/gotwarlost/istanbul) code coverage tool using the [nyc](https://github.com/istanbuljs/nyc) CLI.
+
+This is a fork of the original [browserify-istanbul](https://github.com/devongovett/browserify-istanbul).
 
 ## Installing
 
-    npm install --save-dev browserify-istanbul istanbul
+    npm install --save-dev carpetify
 
 ## Usage
 
-There are several ways to register browserify transforms: on the command line, in your `package.json`, or using the browserify API.
-You can use all of these with browserify-istanbul: see the [browserify docs](http://github.com/substack/node-browserify) for more info.
+This library should be used as a transform to your browserify bundle -- it will
+instrument the code in the bundle that doesn't match the ignore filter.
 
-There are a few options available to browserify-istanbul when you use it from JavaScript.  They are shown in the following code example:
+Please see the [browserify](https://github.com/substack/node-browserify) repo
+for full instructions on how to use browserify plugins.
 
-```javascript
-var istanbul = require('browserify-istanbul');
+You can pass in several configuration options to the plugin:
+* `defaultIgnore:boolean` - use the default ignores or not
+* `ignore:array(string)` - an array of strings to pass to minimatch to ignore files.
+* `stripBasePath:boolean` - by default the full path to the file on your disk will be provided. This can be a problem if you want to use the default ignores but your parent directory contains one of the ignores. This will strip off the leading directories, allowing coverage to work
 
-// use without any options...
-browserifyBundle.transform(istanbul);
+This will instrument all the code and generate a coverage report, attached to the
+window object in the browser. You'll likely need another tool to deal with this,
+you might want to check out:
 
-// or with some options...
-browserifyBundle.transform(istanbul({
-  // ignore these glob paths (the ones shown are the defaults)
-  ignore: ['**/node_modules/**', '**/bower_components/**', '**/test/**', '**/tests/**', '**/*.json'],
-
-  // by default, any paths you include in the ignore option are ignored
-  // in addition to the defaults. set the defaultIgnore option to false
-  // to only ignore the paths you specify.
-  defaultIgnore: true
-}));
-```
-
-### Command line
-
-- without options:
-
-```
-./node_modules/.bin/browserify -t browserify-istanbul test/test-*.js -o bundle.js
-```
-
-- with options
-
-```
-./node_modules/.bin/browserify -t [ browserify-istanbul --ignore "**/bower_components/**" ] test/test-*.js -o bundle.js
-```
+* [tape-istanbul](https://github.com/bendrucker/tape-istanbul) - writes coverage data to disk
+* [tape-coverage](https://github.com/toddself/tape-coverage) - uses tape-istanbul & tape-run to automate report generation
 
 
 ## License

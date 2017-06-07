@@ -2,7 +2,7 @@ var through = require('through')
 var minimatch = require('minimatch')
 var objectAssign = require('object-assign')
 
-var defaultIgnore = ['**/node_modules/**', '**/bower_components/**', '**/test/**', '**/tests/**', '**/*.json']
+var defaultIgnore = ['**/tape-istanbul/**', '**/node_modules/**', '**/bower_components/**', '**/test/**', '**/tests/**', '**/*.json']
 
 function shouldIgnoreFile (file, options) {
   var ignore = options.defaultIgnore === false ? [] : defaultIgnore

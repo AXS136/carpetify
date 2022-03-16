@@ -1,0 +1,3 @@
+defaultIgnore:boolean
+ignore:array(string)
+stripBasePath:boolean
